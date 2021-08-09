@@ -76,7 +76,7 @@ class LoadModelDemo {
 
   _LoadAnimatedModel() {
     const loader = new FBXLoader();
-    loader.setPath('./resources/zombie/');
+    loader.setPath('./');
     loader.load('mremireh_o_desbiens.fbx', (fbx) => {
       fbx.scale.setScalar(0.1);
       fbx.traverse(c => {
@@ -84,7 +84,7 @@ class LoadModelDemo {
       });
 
       const anim = new FBXLoader();
-      anim.setPath('./resources/zombie/');
+      anim.setPath('./');
       anim.load('walk.fbx', (anim) => {
         const m = new THREE.AnimationMixer(fbx);
         this._mixers.push(m);
@@ -117,15 +117,7 @@ class LoadModelDemo {
     });
   }
 
-  _LoadModel() {
-    const loader = new GLTFLoader();
-    loader.load('./resources/thing.glb', (gltf) => {
-      gltf.scene.traverse(c => {
-        c.castShadow = true;
-      });
-      this._scene.add(gltf.scene);
-    });
-  }
+
 
   _OnWindowResize() {
     this._camera.aspect = window.innerWidth / window.innerHeight;
